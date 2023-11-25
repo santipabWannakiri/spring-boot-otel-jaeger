@@ -10,9 +10,9 @@ tracing becomes crucial to understand how different services interact with each 
 ## OpenTelemetry (OTEL)
 is a versatile observability framework, providing APIs, libraries, and agents for streamlined instrumentation in cloud-native environments. Supporting multiple languages, it simplifies tracing, metrics, and logging, ensuring detailed performance data capture for effective monitoring and troubleshooting.\
 In this scenario, we're going to focus on tracing only, and we will setup components for tracing at the following
->OTEL Agent: Streamlines the integration of OpenTelemetry instrumentation into applications, automating the collection and export of telemetry data, including traces and metrics.
+>`OTEL Agent`: Streamlines the integration of OpenTelemetry instrumentation into applications, automating the collection and export of telemetry data, including traces and metrics.
 
->OTEL Collector: A versatile hub that receives, processes, and exports telemetry data. Configurable to support different input/output protocols, enhancing observability across various environments.
+>`OTEL Collector`: A versatile hub that receives, processes, and exports telemetry data. Configurable to support different input/output protocols, enhancing observability across various environments.
 
 
 ## Jaeger
