@@ -22,6 +22,11 @@ In this scenario, we're going to focus on tracing only, and we will setup compon
 ## Jaeger
 Jaeger is an open-source distributed tracing system, part of the CNCF, designed to track transactions across microservices. With its user-friendly interface and compatibility with various backends, Jaeger visualizes and analyzes latency, making it a crucial tool for identifying bottlenecks and optimizing user experiences.
 
+## Configuration
+<p align="center">
+  <img src="images/otel-jaeger.jpg" alt="image description" width="860" height="220">
+</p>
+
 
 ENVIRONMENT CONFIGURATION
 (OpenTelemetry Protocol Exporter)[https://opentelemetry.io/docs/specs/otel/protocol/exporter/]
