@@ -2,6 +2,8 @@
 POC project to explore solution for observation tools
 ## Introduction
 
+ENVIRONMENT CONFIGURATION
+(OpenTelemetry Protocol Exporter)[https://opentelemetry.io/docs/specs/otel/protocol/exporter/]
 
 `export OTEL_METRICS_EXPORTER=none`
 
