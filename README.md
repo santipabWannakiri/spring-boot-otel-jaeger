@@ -1,10 +1,11 @@
-# spring-boot-otel-jaeger
+<img width="1426" alt="exmaple-tracing" src="https://github.com/santipabWannakiri/spring-boot-otel-jaeger/assets/18206907/568e0007-f8a8-46bd-b069-b62dbcd26a83"># spring-boot-otel-jaeger
 ## Introduction
 In contemporary software development, microservices architecture has emerged as a widely adopted approach. It offers benefits such as seamless scalability, fault isolation, and support for language-agnostic programming. However, the division of services into smaller units, each deployed in distinct environments, comes with its challenges. Coordinating services to collaborate in response to a client's action can be complex, especially when delays in one service can impact others. This raises important questions: How can we effectively monitor these services? How can we gain insights into the time each service consumes?
 
 To address these inquiries, I delved into research to identify the common tools and frameworks used for tracing. Therefore, in this article, I will undertake a small POC to delve into the tracing of a microservice using OpenTelemetry and Jaeger.
 
 ## Tracing
+<img src="images/example-tracing.png"  alt="image description" width="600" height="180">
 tracing becomes crucial to understand how different services interact with each other to fulfill a user request. Tracing tools provide a detailed view of the end-to-end journey of a request, showing which services were involved, how much time each service took, and if there were any errors or delays.
 
 ## OpenTelemetry (OTEL)
