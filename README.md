@@ -1,4 +1,4 @@
-<img width="1426" alt="exmaple-tracing" src="https://github.com/santipabWannakiri/spring-boot-otel-jaeger/assets/18206907/568e0007-f8a8-46bd-b069-b62dbcd26a83"># spring-boot-otel-jaeger
+# spring-boot-otel-jaeger
 ## Introduction
 In contemporary software development, microservices architecture has emerged as a widely adopted approach. It offers benefits such as seamless scalability, fault isolation, and support for language-agnostic programming. However, the division of services into smaller units, each deployed in distinct environments, comes with its challenges. Coordinating services to collaborate in response to a client's action can be complex, especially when delays in one service can impact others. This raises important questions: How can we effectively monitor these services? How can we gain insights into the time each service consumes?
 
