@@ -5,7 +5,10 @@ In contemporary software development, microservices architecture has emerged as 
 To address these inquiries, I delved into research to identify the common tools and frameworks used for tracing. Therefore, in this article, I will undertake a small POC to delve into the tracing of a microservice using OpenTelemetry and Jaeger.
 
 ## Tracing
-<img src="images/example-tracing.png"  alt="image description" width="600" height="180">
+<p align="center">
+  <img src="images/exmaple-tracing.png" alt="image description" width="600" height="150">
+</p>
+
 tracing becomes crucial to understand how different services interact with each other to fulfill a user request. Tracing tools provide a detailed view of the end-to-end journey of a request, showing which services were involved, how much time each service took, and if there were any errors or delays.
 
 ## OpenTelemetry (OTEL)
