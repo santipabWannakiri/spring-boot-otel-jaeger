@@ -4,6 +4,12 @@ In contemporary software development, microservices architecture has emerged as 
 
 To address these inquiries, I delved into research to identify the common tools and frameworks used for tracing. Therefore, in this article, I will undertake a small POC to delve into the tracing of a microservice using OpenTelemetry and Jaeger.
 
+## Tracing
+
+## OpenTelemetry
+
+## Jaeger
+
 ENVIRONMENT CONFIGURATION
 (OpenTelemetry Protocol Exporter)[https://opentelemetry.io/docs/specs/otel/protocol/exporter/]
 
