@@ -2,6 +2,9 @@
 POC project to explore solution for observation tools
 ## Introduction
 
+
+`export OTEL_METRICS_EXPORTER=none`
+
 | Section   | Purpose                                                           | Example                                                                                                              |
 |-----------|-------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 | Receivers | Configure receivers that listen for incoming data.               | - `otlp`: OTLP receiver for traces over gRPC.<br/> - `otlp/standalone`: OTLP receiver for metrics.<br/> - `zipkin`: Zipkin receiver for traces over HTTP.                       |
