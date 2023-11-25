@@ -28,6 +28,7 @@ Jaeger is an open-source distributed tracing system, part of the CNCF, designed 
 </p>
 
 
+[Automatic Instrumentation](https://opentelemetry.io/docs/instrumentation/java/automatic/)
 ENVIRONMENT CONFIGURATION
 (OpenTelemetry Protocol Exporter)[https://opentelemetry.io/docs/specs/otel/protocol/exporter/]
 
