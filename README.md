@@ -34,12 +34,15 @@ As depicted in the illustration above, there are three key components that requi
 In order to make a system observable, it must be instrumented. That is, code from the system’s components must emit traces, metrics, and logs.
 The instruments differ in three ways, as shown below.
 
->`Automatic Instrumentation`:
+>`Automatic Instrumentation`: is the most straightforward method, requiring no source code modifications. Simply download an agent and provide a few parameters when starting the application.
 
->`Manually instrumentation`:
+>`Manually Instrumentation`:  requires to add code snippets for tracing, metrics, and logging within the application code. Developers have fine-grained control over what and how instrumentation is implemented. 
 
->`Instrumentation Libraries`:
+>`Instrumentation Libraries`: for libraries without such an integration the OpenTelemetry.
 
+```diff
+- Note: some of your libraries will be observable out of the box by calling the OpenTelemetry API themselves directly. Those libraries are sometimes called `natively instrumented`.
+```
 
 
 
