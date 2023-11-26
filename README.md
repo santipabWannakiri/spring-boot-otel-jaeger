@@ -27,6 +27,22 @@ Jaeger is an open-source distributed tracing system, part of the CNCF, designed 
   <img src="images/otel-jaeger.jpg" alt="image description" width="860" height="220">
 </p>
 
+As depicted in the illustration above, there are three key components that require configuration: OTEL Agent, OTEL Collector, and Jaeger. I'll provide more detailed insights into each of these components in the upcoming section. Additionally, it's worth noting that the communication between these components is facilitated through the use of port 4317, a valid port for OTLP/gRPC.
+
+### 1.Agent configuration
+#### Instrumentation
+In order to make a system observable, it must be instrumented. That is, code from the system’s components must emit traces, metrics, and logs.
+The instruments differ in three ways, as shown below.
+
+>`Automatic Instrumentation`:
+
+>`Manually instrumentation`:
+
+>`Instrumentation Libraries`:
+
+
+
+
 
 [Automatic Instrumentation](https://opentelemetry.io/docs/instrumentation/java/automatic/)
 
