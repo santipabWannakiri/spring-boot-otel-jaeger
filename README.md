@@ -22,7 +22,7 @@ In this scenario, we're going to focus on tracing only, and we will setup compon
 ## Jaeger
 Jaeger is an open-source distributed tracing system, part of the CNCF, designed to track transactions across microservices. With its user-friendly interface and compatibility with various backends, Jaeger visualizes and analyzes latency, making it a crucial tool for identifying bottlenecks and optimizing user experiences.
 
-## Configuration
+## Components
 <p align="center">
   <img src="images/otel-jaeger.jpg" alt="image description" width="860" height="220">
 </p>
@@ -40,20 +40,34 @@ The instruments differ in three ways, as shown below.
 
 >`Instrumentation Libraries`: for libraries without such an integration the OpenTelemetry.
 
+Refer document : [Instrumentation](https://opentelemetry.io/docs/concepts/instrumentation/)
 ```diff
 - Note: some of your libraries will be observable out of the box by calling the OpenTelemetry API themselves directly. Those libraries are sometimes called `natively instrumented`.
 ```
 
+In this article, I'm going to use `Automatic Instrumentation` with the Spring Boot application, which has a detailed configuration. Please see below:
+#### Automatic Instrumentation Configuration
+1. Setup enivronment at following 
+ ```
+export OTEL_SERVICE_NAME="your-service-name"
+export OTEL_EXPORTER_OTPL_ENDPOINT=http://your-collector-service:4317
+export OTEL_METRICS_EXPORTER=none
+ ```
+OTEL_SERVICE_NAME: Sets the service name visible on the Jaeger dashboard.
+OTEL_EXPORTER_OTPL_ENDPOINT: Specifies the endpoint for OpenTelemetry data. Useful when pointing to an OTEL Collector in a Docker or external setup.
+OTEL_METRICS_EXPORTER=none: Disables metrics export. Running the application without this may trigger a warning message.
+
+2. Start Spring boot app with agent 
+ ```java
+java -javaagent:path/to/opentelemetry-javaagent.jar -jar myapp.jar
+
+ ```
+Refer document:\
+[Automatic Instrumentation](https://opentelemetry.io/docs/instrumentation/java/automatic/)\
+[OpenTelemetry Protocol Exporter](https://opentelemetry.io/docs/specs/otel/protocol/exporter/)
 
 
 
-[Automatic Instrumentation](https://opentelemetry.io/docs/instrumentation/java/automatic/)
-
-
-ENVIRONMENT CONFIGURATION
-(OpenTelemetry Protocol Exporter)[https://opentelemetry.io/docs/specs/otel/protocol/exporter/]
-
-`export OTEL_METRICS_EXPORTER=none`
 
 | Section   | Purpose                                                           | Example                                                                                                              |
 |-----------|-------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
