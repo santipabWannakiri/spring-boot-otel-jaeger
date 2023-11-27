@@ -68,7 +68,7 @@ Refer document:\
 
 The example configuration above requires many manual steps to start the agent, such as building a spring boot application as a jar file and exporting the environment parameter, then starting the application, including the agent, via the command. Therefore, to make things easier, we can wrap our application as a container and then put it in Docker Composer, including pre-defining all environment parameters.
 For example, a Dockerfile would be like this:
- ```
+ ```DockerFile
 FROM openjdk:17-jdk-slim-buster
 WORKDIR /app
 COPY opentelemetry-javaagent.jar /app/opentelemetry-javaagent.jar
@@ -81,7 +81,7 @@ Then run the command to build images from DockerFile
 docker build -t <image_name>:<tag> <path_to_dockerfile_context>
  ```
 Once we are done building images, we can define Docker Compose like this:
- ```
+ ```yaml
   spring-boot-otel-app:
     image: app/spring-boot-otel
     environment:
@@ -90,13 +90,47 @@ Once we are done building images, we can define Docker Compose like this:
     - OTEL_METRICS_EXPORTER=none
     ports:
       - 8080:8080
-    depends_on:
-      - otel-collector
-      - jaeger-service
+
  ```
 
-#### OTEL Collector Configuration
-To installation and configuration, it c
+### 2.OTEL Collector Configuration
+OTEL Collector provides Docker images, so we can define them in the Docker Composer like this.
+ ```yaml
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
+    ports:
+      - 4317:4317  # OTLP gRPC receiver
+      - 4318:4318  # OTLP http receiver
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+ ```
+You might notice that there is a map volumes file named `otel-collector-config.yaml` to the container. This file is a configuration file for Collector. We need to define things like receivers, processors, exporters, and services.
+Example otel-collector-config.yaml
+ ```yaml
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+processors:
+  batch:
+exporters:
+  otlp/jaeger:
+    endpoint: jaeger-service:4317
+    tls:
+      insecure: true
+  logging:
+    loglevel: debug
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp/jaeger,logging]
+ ```
+For the details in each section, please take a look at the table below as a reference. 
 
 | Section   | Purpose                                                           | Example                                                                                                              |
 |-----------|-------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
@@ -105,3 +139,8 @@ To installation and configuration, it c
 | Processors| Configure processors that manipulate or transform data.          | - `batch`: Batch Processor to batch traces and metrics before exporting, reducing network overhead.                  |
 | Extensions| Configure extensions providing additional functionality.          | - `health_check`: Health Check extension with a health check endpoint.<br/> - `zpages`: ZPages extension for web interface for debugging traces.                        |
 | Service   | Define pipelines specifying how data flows through the collector.| - `pipelines`: Separate pipelines for traces, metrics, and logs.<br/> - `traces`: Trace pipeline with OTLP receiver and Logging Exporter.<br/> - `metrics`: Metrics pipeline with OTLP/standalone receiver and Logging Exporter.<br/> - `logs`: Logs pipeline with Zipkin receiver, Batch Processor, and Logging Exporter. |
+
+Reference Document:\
+[Deployment Agent](https://opentelemetry.io/docs/collector/deployment/agent/)\
+[Configure the Collector](https://opentelemetry.io/docs/collector/configuration/)\
+[Jaeger exporter in the Collector](https://opentelemetry.io/blog/2023/jaeger-exporter-collector-migration/)
