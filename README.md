@@ -163,4 +163,28 @@ Reference Document:\
 [With OpenTelemetry Collector](https://www.jaegertracing.io/docs/next-release/architecture/#with-opentelemetry-collector)
 
 ### How to run the project
+According to the example, this project setup is based on Docker Composer, so to start the project, you can follow the steps below.
 
+1. Clone project
+2. Complie Spring boot app
+```mvn
+mvn clean install
+ ```
+3. Build images from DockerFile
+```mvn
+docker build -t app/spring-boot-otel .
+ ```
+4. Start Docker Compose
+```mvn
+docker compose up -d
+ ```
+5. Hit the API with the following endpoint:
+```
+curl --location 'http://localhost:8080/instructors'
+or
+curl --location 'http://localhost:8080/instructor=3'
+ ```
+6. Open jaeger UI and tracing
+```
+http://localhost:16686/trace
+ ```
