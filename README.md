@@ -66,8 +66,37 @@ Refer document:\
 [Automatic Instrumentation](https://opentelemetry.io/docs/instrumentation/java/automatic/)\
 [OpenTelemetry Protocol Exporter](https://opentelemetry.io/docs/specs/otel/protocol/exporter/)
 
+The example configuration above requires many manual steps to start the agent, such as building a spring boot application as a jar file and exporting the environment parameter, then starting the application, including the agent, via the command. Therefore, to make things easier, we can wrap our application as a container and then put it in Docker Composer, including pre-defining all environment parameters.
+For example, a Dockerfile would be like this:
+ ```
+FROM openjdk:17-jdk-slim-buster
+WORKDIR /app
+COPY opentelemetry-javaagent.jar /app/opentelemetry-javaagent.jar
+COPY target/spring-boot-otel-jaeger-0.0.1-SNAPSHOT.jar /app/spring-boot-otel-jaeger-0.0.1-SNAPSHOT.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-javaagent:/app/opentelemetry-javaagent.jar", "-jar", "/app/spring-boot-otel-jaeger-0.0.1-SNAPSHOT.jar"]
+ ```
+Then run the command to build images from DockerFile
+ ```
+docker build -t <image_name>:<tag> <path_to_dockerfile_context>
+ ```
+Once we are done building images, we can define Docker Compose like this:
+ ```
+  spring-boot-otel-app:
+    image: app/spring-boot-otel
+    environment:
+    - OTEL_SERVICE_NAME=otel-service
+    - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
+    - OTEL_METRICS_EXPORTER=none
+    ports:
+      - 8080:8080
+    depends_on:
+      - otel-collector
+      - jaeger-service
+ ```
 
-
+#### OTEL Collector Configuration
+To installation and configuration, it c
 
 | Section   | Purpose                                                           | Example                                                                                                              |
 |-----------|-------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
