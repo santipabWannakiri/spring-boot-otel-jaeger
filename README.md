@@ -144,3 +144,21 @@ Reference Document:\
 [Deployment Agent](https://opentelemetry.io/docs/collector/deployment/agent/)\
 [Configure the Collector](https://opentelemetry.io/docs/collector/configuration/)\
 [Jaeger exporter in the Collector](https://opentelemetry.io/blog/2023/jaeger-exporter-collector-migration/)
+
+### 3.Jaeger Configuration
+Jaeger also provides Docker images, so we can configure them like this.
+ ```yaml
+  jaeger-service:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - 16686:16686 #serve frontend
+      - 4317 # The default port for OTLP/gRPC is 4317: don't need to export for host (internal only)
+ ```
+It's crucial to expose at least two ports:\
+Port 16686 provides access to the frontend.\
+Port 4317 is utilized for receiving events from the OTEL Collector.
+
+Reference Document:\
+[Get up and running with Jaeger](https://www.jaegertracing.io/docs/1.51/getting-started/)\
+[With OpenTelemetry Collector](https://www.jaegertracing.io/docs/next-release/architecture/#with-opentelemetry-collector)
+
