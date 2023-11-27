@@ -162,3 +162,5 @@ Reference Document:\
 [Get up and running with Jaeger](https://www.jaegertracing.io/docs/1.51/getting-started/)\
 [With OpenTelemetry Collector](https://www.jaegertracing.io/docs/next-release/architecture/#with-opentelemetry-collector)
 
+### How to run the project
+
