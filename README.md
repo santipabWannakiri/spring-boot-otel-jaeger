@@ -188,3 +188,6 @@ curl --location 'http://localhost:8080/instructor=3'
 ```
 http://localhost:16686/trace
  ```
+
+Refer :
+[Getting Started with OpenTelemetry](https://medium.com/@danielbcorreia/getting-started-with-opentelemetry-11c1be82a44f)
